@@ -162,40 +162,40 @@ iframe{
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function(){
+// Espera que cargue todo
+window.onload = function(){
+
     var intro = document.getElementById("intro");
+    var contenido = document.getElementById("contenido");
 
-if(intro){
-    intro.addEventListener("click", entrar);
-    intro.addEventListener("touchstart", entrar);
-}
+    // Cuando toquen la pantalla
+    intro.addEventListener("click", mostrarContenido);
+    intro.addEventListener("touchstart", mostrarContenido);
 
-// ENTRAR
-function entrar(){
-    document.getElementById("intro").style.opacity="0";
-    setTimeout(function(){
-        document.getElementById("intro").style.display="none";
-        document.getElementById("contenido").style.display="block";
+    function mostrarContenido(){
+        intro.style.display = "none";
+        contenido.style.display = "block";
         lluviaCorazones();
+    }
+
+    // CONTADOR
+    var fecha = new Date("February 14, 2026 00:00:00").getTime();
+
+    setInterval(function(){
+        var ahora = new Date().getTime();
+        var d = fecha - ahora;
+
+        var dias = Math.floor(d/(1000*60*60*24));
+        var horas = Math.floor((d%(1000*60*60*24))/(1000*60*60));
+        var min = Math.floor((d%(1000*60*60))/(1000*60));
+        var seg = Math.floor((d%(1000*60))/1000);
+
+        document.getElementById("contador").innerHTML =
+        "Faltan 💕 " + dias + " dias " + horas + "h "
+        + min + "m " + seg + "s";
     },1000);
-}
-window.entrar = entrar;
 
-// CONTADOR
-var fecha = new Date("February 14, 2026 00:00:00").getTime();
-setInterval(function(){
-    var ahora = new Date().getTime();
-    var d = fecha - ahora;
-
-    var dias = Math.floor(d/(1000*60*60*24));
-    var horas = Math.floor((d%(1000*60*60*24))/(1000*60*60));
-    var min = Math.floor((d%(1000*60*60))/(1000*60));
-    var seg = Math.floor((d%(1000*60))/1000);
-
-    document.getElementById("contador").innerHTML =
-    "Faltan 💕 " + dias + " dias " + horas + "h "
-    + min + "m " + seg + "s";
-},1000);
+};
 
 // BOTON SI
 function aceptar(){
@@ -204,21 +204,15 @@ function aceptar(){
     document.getElementById("video").src += "?autoplay=1";
     lluviaCorazones();
 }
-window.aceptar = aceptar;
 
 // BOTON NO
-var noBtn = document.getElementById("no");
-if(noBtn){
-    noBtn.addEventListener("mouseover", function(){
-        var x = Math.random() * 200 - 100;
-        var y = Math.random() * 200 - 100;
-        noBtn.style.transform = "translate("+x+"px,"+y+"px)";
-    });
+function broma(){
+    alert("No vale decir que no 😜 Intenta otra vez 💖");
 }
 
 // LLUVIA
 function lluviaCorazones(){
-    for(let i=0;i<30;i++){
+    for(let i=0;i<25;i++){
         let corazon = document.createElement("div");
         corazon.innerHTML="❤️";
         corazon.style.position="fixed";
@@ -231,7 +225,8 @@ function lluviaCorazones(){
     }
 }
 
-});
+</script>
+
 
 </script>
 
@@ -240,6 +235,7 @@ function lluviaCorazones(){
 
 </body>
 </html>
+
 
 
 
