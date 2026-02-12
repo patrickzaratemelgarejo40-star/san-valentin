@@ -8,122 +8,41 @@
 <style>
 body{
     margin:0;
-    padding:20px;
-    background: linear-gradient(135deg,#ff758c,#ff7eb3);
     font-family: Arial, sans-serif;
     text-align:center;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
     color:white;
 }
 
+/* PANTALLA INICIAL */
+#intro{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:#ff4e78;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:999;
+    cursor:pointer;
+    transition:1s;
+}
+
+#intro h1{
+    font-size:28px;
+    animation:latido 1s infinite;
+}
+
+@keyframes latido{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+    100%{transform:scale(1);}
+}
+
+/* CONTENIDO */
 .contenedor{
     max-width:500px;
     margin:auto;
-}
-
-h1{
-    font-size:32px;
-}
-
-h2{
-    font-size:22px;
-}
-
-button{
-    width:80%;
-    max-width:250px;
-    padding:15px;
-    font-size:18px;
-    border:none;
-    border-radius:30px;
-    cursor:pointer;
-    margin:10px;
-    transition:0.3s;
-}
-
-#si{
-    background:white;
-    color:#ff4e78;
-}
-
-#no{
-    background:#ff4e78;
-    color:white;
-}
-
-#contador{
-    font-size:18px;
-    margin-top:15px;
-}
-
-#mensaje{
-    display:none;
-    font-size:22px;
-    margin-top:20px;
-}
-
-iframe{
-    display:none;
-    width:100%;
-    max-width:350px;
-    height:200px;
-    margin-top:20px;
-    border-radius:20px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="contenedor">
-    <h1>Veronica 💖</h1>
-    <h2>¿Quieres ser mi San Valentin este 14 de febrero? 😍</h2>
-
-    <div id="contador"></div>
-
-    <button id="si" onclick="aceptar()">Si 💘</button>
-    <button id="no" onclick="broma()">No 😢</button>
-
-    <div id="mensaje">Sabia que dirias que SI gorda ❤️😍</div>
-
-    <iframe id="video"
-        src="https://www.youtube.com/embed/2u7aWa4Ah7w"
-        allow="autoplay">
-    </iframe>
-</div>
-
-<script>
-
-// CONTADOR
-var fechaSanValentin = new Date("February 14, 2026 00:00:00").getTime();
-
-setInterval(function(){
-    var ahora = new Date().getTime();
-    var distancia = fechaSanValentin - ahora;
-
-    var dias = Math.floor(distancia/(1000*60*60*24));
-    var horas = Math.floor((distancia%(1000*60*60*24))/(1000*60*60));
-    var minutos = Math.floor((distancia%(1000*60*60))/(1000*60));
-    var segundos = Math.floor((distancia%(1000*60))/1000);
-
-    document.getElementById("contador").innerHTML =
-    "Faltan 💕 " + dias + " dias " + horas + "h "
-    + minutos + "m " + segundos + "s";
-
-},1000);
-
-// BOTON SI
-function aceptar(){
-    document.getElementById("mensaje").style.display="block";
-    document.getElementById("video").style.display="block";
-    document.getElementById("video").src += "?autoplay=1";
-}
-
-// BOTON NO
-function broma(){
-    alert("No vale decir que no 😜 Intenta otra vez 💖");
-}
-
-</script>
-
-</body>
-</html>
+    padding:30px 20px;
+    d
