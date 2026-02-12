@@ -127,7 +127,7 @@ iframe{
 
 <body>
 
-<div id="intro" onclick="entrar()">
+<div id="intro">
     <h1>💖 Toca para entrar 💖</h1>
     <p>Hay algo especial para ti Veronica 😘</p>
 </div>
@@ -163,6 +163,12 @@ iframe{
 <script>
 
 document.addEventListener("DOMContentLoaded", function(){
+var intro = document.getElementById("intro");
+
+if(intro){
+    intro.addEventListener("click", entrar);
+    intro.addEventListener("touchstart", entrar);
+}
 
 // ENTRAR
 function entrar(){
@@ -234,5 +240,6 @@ function lluviaCorazones(){
 
 </body>
 </html>
+
 
 
