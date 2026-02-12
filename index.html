@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para mi Gorda ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 30px;
+  background: linear-gradient(#ff9a9e, #fad0c4);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: #8b0036;
+  overflow-x: hidden;
+}
+
+h1 { font-size: 36px; }
+
+button {
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 25px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+button:hover { background: #ff1f4b; }
+
+#mensaje {
+  display: none;
+  font-size: 22px;
+  margin-top: 20px;
+}
+
+#contador {
+  font-size: 22px;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+/* Corazones */
+.heart {
+  position: fixed;
+  top: -20px;
+  color: red;
+  font-size: 24px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>💖 Hola mi Gorda hermosa 💖</h1>
+
+<p>
+Desde que llegaste a mi vida,<br>
+todo es más bonito, más feliz<br>
+y más divertido contigo 😍
+</p>
+
+<h2>Veronica...</h2>
+
+<h2>¿Quieres ser mi San Valentín este 14 de febrero? 💌🥰</h2>
+
+<p>⏳ Falta para nuestro día:</p>
+<div id="contador"></div>
+
+<button onclick="aceptar()">Sí 💕</button>
+<button onclick="broma()">No 😢</button>
+
+<div id="mensaje"></div>
+
+<script>
+
+// CONTADOR FUNCIONANDO
+const fecha = new Date("February 14, 2026 00:00:00").getTime();
+
+setInterval(function() {
+  const ahora = new Date().getTime();
+  const distancia = fecha - ahora;
+
+  const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+  const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+  document.getElementById("contador").innerHTML =
+    dias + " días 💕 " +
+    horas + "h 😘 " +
+    minutos + "m 💖 " +
+    segundos + "s ❤️";
+
+}, 1000);
+
+
+// BOTÓN SÍ
+function aceptar() {
+
+  // Mostrar mensaje
+  const mensaje = document.getElementById("mensaje");
+  mensaje.style.display = "block";
+  mensaje.innerHTML =
+    "😍💖 Sabía que dirías que SÍ 💖😍<br><br>" +
+    "Veronica, eres lo mejor que me ha pasado ❤️<br>" +
+    "Prometo cuidarte y hacerte feliz siempre 😘💋<br><br>" +
+    "Te amo mi Gorda hermosa 💘";
+
+  // Abrir canción
+window.open("https://www.youtube.com/watch?v=2u7aWa4Ah7w", "_blank");
+
+  // Crear corazones animados
+  for (let i = 0; i < 25; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }
+}
+
+
+// BOTÓN NO
+function broma() {
+  alert("😤 Oyeee… no vale decir que no 😂 Inténtalo otra vez 💖");
+}
+
+</script>
+
+</body>
+</html>
