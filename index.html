@@ -163,8 +163,12 @@ iframe{
 <script>
 
 document.addEventListener("DOMContentLoaded", function(){
-var intro = document.getElementById("intro");
+    var intro = document.getElementById("intro");
 
+if(intro){
+    intro.addEventListener("click", entrar);
+    intro.addEventListener("touchstart", entrar);
+}
 
 // ENTRAR
 function entrar(){
@@ -236,6 +240,7 @@ function lluviaCorazones(){
 
 </body>
 </html>
+
 
 
 
