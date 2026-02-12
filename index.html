@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Veronica 💘</title>
+<title>Para Veronica 💘</title>
 
 <style>
 body{
@@ -12,9 +12,10 @@ body{
     text-align:center;
     background: linear-gradient(135deg,#ff758c,#ff7eb3);
     color:white;
+    overflow-x:hidden;
 }
 
-/* PANTALLA INICIAL */
+/* INTRO */
 #intro{
     position:fixed;
     width:100%;
@@ -45,4 +46,178 @@ body{
     max-width:500px;
     margin:auto;
     padding:30px 20px;
-    d
+    display:none;
+    animation:fade 1.5s forwards;
+}
+
+@keyframes fade{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+button{
+    width:80%;
+    max-width:250px;
+    padding:15px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
+}
+
+#si{
+    background:white;
+    color:#ff4e78;
+}
+
+#no{
+    background:#ff4e78;
+    color:white;
+    position:relative;
+}
+
+#contador{
+    margin-top:15px;
+    font-size:18px;
+}
+
+/* CARTA */
+#carta{
+    display:none;
+    background:white;
+    color:#ff4e78;
+    padding:20px;
+    border-radius:20px;
+    margin-top:20px;
+    animation:abrir 1s forwards;
+}
+
+@keyframes abrir{
+    from{transform:scale(0.5); opacity:0;}
+    to{transform:scale(1); opacity:1;}
+}
+
+iframe{
+    display:none;
+    width:100%;
+    max-width:350px;
+    height:200px;
+    margin-top:20px;
+    border-radius:20px;
+}
+
+/* CORAZONES */
+.corazon{
+    position:fixed;
+    top:-10px;
+    font-size:20px;
+    animation:caer linear forwards;
+}
+
+@keyframes caer{
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="intro" onclick="entrar()">
+    <h1>💖 Toca para entrar 💖</h1>
+    <p>Hay algo especial para ti Veronica 😘</p>
+</div>
+
+<div class="contenedor" id="contenido">
+    <h1>Veronica 💖</h1>
+    <h2>¿Quieres ser mi San Valentin este 14 de febrero? 😍</h2>
+
+    <div id="contador"></div>
+
+    <button id="si" onclick="aceptar()">Si 💘</button>
+    <button id="no">No 😢</button>
+
+    <div id="carta">
+        <h3>💌 Para ti mi Gorda hermosa 💌</h3>
+        <p>
+        Desde que llegaste a mi vida todo es más bonito ❤️<br>
+        Eres mi felicidad diaria, mi paz y mi locura favorita 😘<br><br>
+        Gracias por existir Veronica 💖<br>
+        ¿Aceptas ser mi San Valentin? 🥰<br><br>
+        <strong>De: Patrick ❤️</strong>
+        </p>
+    </div>
+
+    <iframe id="video"
+        src="https://www.youtube.com/embed/2u7aWa4Ah7w"
+        allow="autoplay">
+    </iframe>
+</div>
+
+<script>
+
+// ENTRAR
+function entrar(){
+    document.getElementById("intro").style.opacity="0";
+    setTimeout(function(){
+        document.getElementById("intro").style.display="none";
+        document.getElementById("contenido").style.display="block";
+        lluviaCorazones();
+    },1000);
+}
+
+// CONTADOR
+var fecha = new Date("February 14, 2026 00:00:00").getTime();
+setInterval(function(){
+    var ahora = new Date().getTime();
+    var d = fecha - ahora;
+
+    var dias = Math.floor(d/(1000*60*60*24));
+    var horas = Math.floor((d%(1000*60*60*24))/(1000*60*60));
+    var min = Math.floor((d%(1000*60*60))/(1000*60));
+    var seg = Math.floor((d%(1000*60))/1000);
+
+    document.getElementById("contador").innerHTML =
+    "Faltan 💕 " + dias + " dias " + horas + "h "
+    + min + "m " + seg + "s";
+},1000);
+
+// BOTON SI
+function aceptar(){
+    document.getElementById("carta").style.display="block";
+    document.getElementById("video").style.display="block";
+    document.getElementById("video").src += "?autoplay=1";
+    lluviaCorazones();
+}
+
+// BOTON NO QUE SE ESCAPA
+var noBtn = document.getElementById("no");
+noBtn.addEventListener("mouseover", function(){
+    var x = Math.random() * 200 - 100;
+    var y = Math.random() * 200 - 100;
+    noBtn.style.transform = "translate("+x+"px,"+y+"px)";
+});
+
+// LLUVIA DE CORAZONES
+function lluviaCorazones(){
+    for(let i=0;i<30;i++){
+        let corazon = document.createElement("div");
+        corazon.className="corazon";
+        corazon.innerHTML="❤️";
+        corazon.style.left=Math.random()*100+"vw";
+        corazon.style.fontSize=(15+Math.random()*25)+"px";
+        corazon.style.animationDuration=(2+Math.random()*3)+"s";
+        document.body.appendChild(corazon);
+        setTimeout(()=>{corazon.remove();},5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
+
